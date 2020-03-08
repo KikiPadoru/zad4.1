@@ -2,10 +2,19 @@
 
 void Znak::copu(int* a)
 {
-	for (int i = 0; i < 3; i++) {
-		data[i] = a[i];
-	}
+	
+	data[0] = a[0];
+	data[1] = a[1];
+	data[2] = a[2];
+	
 }
+
+void Znak::va(int* a)
+{
+	int d = a[2] * 10000 + a[1] * 100 + a[0];
+	sum = d;
+}
+
 Znak::Znak() {
 	name = "";
 	zn = "";
@@ -15,15 +24,20 @@ Znak::Znak(Znak& a) {
 	zn = a.zn;
 	int* b = (int*)a.data;
 	copu(b);
-}
-istream& operator>>(istream& is, Znak& a)
-{
-	is >> a.name;
-	is >> a.zn;
-	is >> a.data[0] >> a.data[1] >> a.data[2];
-}
+	va(b);
 
-ostream& operator<<(ostream& os,const Znak a)
-{
-	return os << a.name << " " <<a.zn << " " <<a.data[0] << " " <<a.data[1] << " " <<a.data[2]<<endl;
 }
+//Znak& Znak::operator=(const Znak& a)
+//{
+//	sum = a.sum;
+//	strcpy(name, a.name);
+//	strcpy(zn, a.zn);
+//	int* b = (int*)a.data;
+//	copu(b);
+//	return;
+//}
+istream& operator >>(istream& in, Znak& a) {  return in >> a.name >> a.zn >> a.data[0] >> a.data[1] >> a.data[2]; }
+
+ostream& operator<<(ostream& on,Znak& a){ 
+	int b = a.data[2] * 10000 + a.data[1] * 100 + a.data[0];
+	return on << a.name << " " <<a.zn << " " <<a.data[0] << " " <<a.data[1] << " " <<a.data[2]<<" "<<b<<" "<<a.sum<<endl;}
