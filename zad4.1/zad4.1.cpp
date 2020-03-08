@@ -1,6 +1,7 @@
 ﻿
 #include <iostream>
 #include "Znak.h"
+#include<vector>;
 using namespace std;
 
 void BubbleSort(Znak* a, int n)
@@ -11,7 +12,7 @@ void BubbleSort(Znak* a, int n)
 	{
 		flag = false;
 		for (int i = 0; i < n - 1; i++)
-			if (a[i].sum > a[i + 1].sum) { flag = true; t = a[i]; a[i] = a[i + 1]; a[i + 1] = t; }
+			if (a[i] > a[i + 1]) { flag = true; t = a[i]; a[i] = a[i + 1]; a[i + 1] = t; }
 
 	}
 }
@@ -19,9 +20,11 @@ void BubbleSort(Znak* a, int n)
 
 int main()
 {
-    Znak A[3];
+	int a;
     ifstream in ("man.txt");
-    for (int i = 0; i < 3;i++) {
+	in >> a;
+	Znak *A = new Znak [a];
+    for (int i = 0; i < a;i++) {
         in >> A[i];
         cout << A[i];
     }
